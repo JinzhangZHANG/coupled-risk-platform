@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8"><title>Preparing full report…</title></head>
+  <body>
+    <script>
+      const report = sessionStorage.getItem("coupled-risk-full-report");
+      if (report) {
+        document.open();
+        document.write(report);
+        document.close();
+        document.title = document.documentElement.lang === "zh-CN" ? "多风险耦合评估报告" : "Coupled Multi-Risk Assessment Report";
+        const visuals = sessionStorage.getItem("coupled-risk-report-visuals");
+        const pathHeading = [...document.querySelectorAll("h2")].find(node => /Effective Propagation Paths|有效传播路径/i.test(node.textContent));
+        if (visuals && pathHeading) {
+          const section = document.createElement("section");
+          section.innerHTML = visuals;
+          pathHeading.before(section);
+          const style = document.createElement("style");
+          style.textContent = '.report-network{padding:12px;border:1px solid #d8e2f0;border-radius:12px}.report-network svg{display:block;width:100%;max-height:560px}.report-result{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:18px;border:1px solid #d8e2f0;border-radius:12px}.report-result svg{width:100%;max-height:330px}.report-result dl{display:grid;grid-template-columns:1fr 1fr;gap:10px}.report-result dt{color:#62708a}.report-result dd{margin:0;font-weight:700}@media print{.report-network,.report-result{break-inside:avoid}}';
+          document.head.appendChild(style);
+        }
+      } else {
+        document.body.innerHTML = '<p>No report data found. <a href="./index.html">Return to the platform</a>.</p>';
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coupled Multi-Risk Assessment Platform</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <section class="login-screen" id="loginScreen" aria-labelledby="loginTitle">
+      <div class="login-card">
+        <div class="login-visual" aria-hidden="true">
+          <img src="./assets/subsea-tunnel-sidebar.jpg" alt="" />
+        </div>
+        <form class="login-form" id="loginForm">
+          <div class="login-brand"><span>CM</span><strong>Coupled Multi-Risk<br />Assessment Platform</strong></div>
+          <div><span class="eyebrow">Engineering risk decision support</span><h1 id="loginTitle">Welcome back</h1><p>Sign in to open the assessment workspace.</p></div>
+          <label>Username<input id="loginUsername" type="text" autocomplete="username" required /></label>
+          <label>Password<input id="loginPassword" type="password" autocomplete="current-password" required /></label>
+          <p class="login-error" id="loginError" role="alert" aria-live="polite"></p>
+          <button class="primary-button login-button" type="submit">Sign In</button>
+          <small class="demo-credentials">Demo account: <b>test</b> &nbsp; Password: <b>1234</b></small>
+        </form>
+      </div>
+    </section>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <div class="brand">
+          <div class="brand-mark">CM</div>
+          <div>
+            <strong>Coupled Multi-Risk</strong>
+            <span>Assessment Platform</span>
+          </div>
+        </div>
+        <nav class="nav-list">
+          <a href="#dashboard" class="nav-item active" data-section="dashboard">Dashboard</a>
+          <a href="#setup" class="nav-item" data-section="setup">Project Setup</a>
+          <a href="#library" class="nav-item" data-section="library">Risk Library</a>
+          <a href="#coupling" class="nav-item" data-section="coupling">Coupling Matrix</a>
+          <a href="#transmission" class="nav-item" data-section="transmission">Transfer Matrix</a>
+          <a href="#paths" class="nav-item" data-section="paths">Effective Paths</a>
+          <a href="#assessment" class="nav-item" data-section="assessment">Target-Risk Assessment</a>
+          <a href="#reports" class="nav-item" data-section="reports">Reports</a>
+        </nav>
+        <button class="nav-item settings-link" id="openSettings" type="button">Settings</button>
+        <div class="side-art">
+          <img src="./assets/subsea-tunnel-sidebar.jpg" alt="Subsea tunnel entrance with a cable-stayed bridge" />
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <span class="eyebrow">Engineering risk decision support</span>
+            <h1>Coupled Multi-Risk Assessment Platform</h1>
+          </div>
+          <div class="top-actions">
+            <button class="ghost-button" id="signOut" type="button">Sign Out</button>
+            <button class="ghost-button" id="resetDemo">Reset Demo</button>
+            <button class="primary-button" id="printReport">Export Full Report</button>
+          </div>
+        </header>
+
+        <section class="panel hero-panel" id="dashboard">
+          <div class="section-title">
+            <span>Project Summary</span>
+            <strong id="projectTitle">Qingdao Jiaozhou Bay Second Subsea Tunnel</strong>
+          </div>
+          <div class="project-grid">
+            <div class="project-meta">
+              <dl>
+                <div><dt>Project Type</dt><dd id="projectTypeText">Subsea tunnel</dd></div>
+                <div><dt>Location</dt><dd id="locationText">Qingdao, Shandong, China</dd></div>
+                <div><dt>Assessment Unit</dt><dd id="unitText">Base demonstration unit</dd></div>
+                <div><dt>Model Focus</dt><dd>Amplification effects and cascading propagation</dd></div>
+              </dl>
+            </div>
+            <div class="metric-card">
+              <i class="metric-icon shield-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 20 6v6c0 5-3.4 8-8 10-4.6-2-8-5-8-10V6l8-3Z"/><path d="M12 7v10"/></svg></i>
+              <span>Initial Target Grade</span>
+              <strong id="initialGradeMetric">III</strong>
+              <small id="initialGradeName">Moderate</small>
+            </div>
+            <div class="metric-card warning">
+              <i class="metric-icon coupled-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 20 6v6c0 5-3.4 8-8 10-4.6-2-8-5-8-10V6l8-3Z"/><path d="m9 12 2 2 4-5"/></svg></i>
+              <span>Coupled Grade</span>
+              <strong id="coupledGradeMetric">II</strong>
+              <small id="coupledGradeName">High</small>
+            </div>
+            <div class="metric-card">
+              <i class="metric-icon chart-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V10m6 10V5m6 15v-7m4 7H2"/><path d="m4 8 6-5 6 7 5-5"/></svg></i>
+              <span>Amplification Factor</span>
+              <strong id="ampMetric">1.219</strong>
+              <small id="ampChange">Path-weighted</small>
+            </div>
+            <div class="metric-card">
+              <i class="metric-icon path-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="5" r="2"/><circle cx="19" cy="7" r="2"/><circle cx="7" cy="19" r="2"/><circle cx="18" cy="18" r="2"/><path d="m7 6 10 1M6 7l1 10m2 1 7 0m2-9v7"/></svg></i>
+              <span>Effective Paths</span>
+              <strong id="pathMetric">4</strong>
+              <small id="thresholdMetric">T0 = 0.05</small>
+            </div>
+          </div>
+          <div class="dashboard-intelligence">
+            <div class="health-card">
+              <div class="health-icon">✓</div>
+              <div><span>Analysis Status</span><strong id="analysisHealth">Completed</strong><small id="healthDetail">Model inputs are ready</small></div>
+            </div>
+            <div class="insight-card"><span>Dominant Path</span><strong id="dominantPath">—</strong><small id="dominantContribution">Highest contribution</small></div>
+            <div class="insight-card"><span>Network Density</span><strong id="networkDensity">—</strong><small>Active directed relations</small></div>
+            <div class="insight-card"><span>Control Priority</span><strong id="controlPriority">—</strong><small>Largest upstream contributor</small></div>
+          </div>
+        </section>
+
+        <section class="dashboard-grid">
+          <article class="panel" id="setup">
+            <div class="section-title compact">
+              <span>Project Setup</span>
+              <button class="mini-button" id="applyProject">Apply</button>
+            </div>
+            <div class="form-grid">
+              <label>Project name<input id="projectName" type="text" /></label>
+              <label>Project type<input id="projectType" type="text" /></label>
+              <label>Location<input id="projectLocation" type="text" /></label>
+              <label>Assessment unit<input id="assessmentUnit" type="text" /></label>
+              <label>Path threshold T0<input id="thresholdInput" type="number" min="0" max="1" step="0.01" /></label>
+              <label>Max path length<input id="maxDepthInput" type="number" min="1" max="6" step="1" /></label>
+            </div>
+          </article>
+
+          <article class="panel" id="library">
+            <div class="section-title compact">
+              <span>Risk Library</span>
+              <button class="mini-button" id="addRisk">Add Risk</button>
+            </div>
+            <div class="risk-list" id="riskList"></div>
+          </article>
+
+          <article class="panel network-panel" id="assessment">
+            <div class="section-title compact">
+              <div><span>Risk Interaction Network</span><small class="section-subtitle">Coupling amplification and cascading propagation displayed together</small></div>
+              <div class="network-legend">
+                <span><i class="coupling-line"></i>Coupling C</span>
+                <span><i class="transfer-line"></i>Transfer T</span>
+              </div>
+            </div>
+            <svg id="networkSvg" viewBox="55 20 790 570" role="img" aria-label="Coupling and transfer risk interaction network"></svg>
+            <div class="network-footnote"><span>Line thickness reflects coefficient magnitude</span><span>Arrow direction indicates risk propagation</span><span>Target risk is located at the centre</span></div>
+          </article>
+
+          <article class="panel result-panel">
+            <div class="section-title compact">
+              <span class="title-with-icon"><i aria-hidden="true">◇</i>Coupled Assessment Result</span>
+              <strong id="warningText">High</strong>
+            </div>
+            <div class="gauge-wrap">
+              <svg id="gaugeSvg" viewBox="0 0 420 240" role="img" aria-label="Coupled risk gauge"></svg>
+              <div class="result-notes">
+                <div><span>Target risk</span><strong id="targetName">Safety Risk</strong></div>
+                <div><span>Initial numerical grade</span><strong id="initialValue">3.00</strong></div>
+                <div><span>Coupled numerical grade</span><strong id="coupledValue">2.46</strong></div>
+                <div><span>Risk change</span><strong id="riskChange">Upgraded by 1 level</strong></div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="matrix-grid">
+          <article class="panel matrix-panel" id="coupling">
+            <div class="section-title compact">
+              <span>Original Coupling Matrix C₀</span>
+              <small>expert initial input · editable</small>
+            </div>
+            <div id="couplingMatrix" class="matrix-host"></div>
+          </article>
+
+          <article class="panel matrix-panel" id="transmission">
+            <div class="section-title compact">
+              <span>Original Transfer Matrix T₀</span>
+              <small>expert initial input · editable</small>
+            </div>
+            <div id="transmissionMatrix" class="matrix-host"></div>
+          </article>
+
+          <article class="panel matrix-panel">
+            <div class="section-title compact"><span>Risk Grade Matrix G</span><small>automatically generated from Risk Library</small></div>
+            <div id="gradeMatrix" class="matrix-host"></div>
+          </article>
+
+          <article class="panel matrix-panel">
+            <div class="section-title compact"><span>Coefficient Adjustment Matrix A</span><small>embedded from the manuscript</small></div>
+            <div id="adjustmentMatrix" class="matrix-host"></div>
+          </article>
+
+          <article class="panel matrix-panel">
+            <div class="section-title compact"><span>Adjusted Coupling Matrix C*</span><small>C₀ × grade adjustment factor</small></div>
+            <div id="adjustedCouplingMatrix" class="matrix-host"></div>
+          </article>
+
+          <article class="panel matrix-panel">
+            <div class="section-title compact"><span>Adjusted Transfer Matrix T*</span><small>T₀ × grade adjustment factor</small></div>
+            <div id="adjustedTransmissionMatrix" class="matrix-host"></div>
+          </article>
+        </section>
+
+        <section class="panel" id="paths">
+          <div class="section-title compact">
+            <span>Effective Propagation Paths</span>
+            <small id="pathSummary">Paths ending at target risk</small>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Path</th>
+                  <th>Propagation route</th>
+                  <th>Propagation probability</th>
+                  <th>Path weight</th>
+                  <th>Coupling product</th>
+                  <th>Contribution</th>
+                </tr>
+              </thead>
+              <tbody id="pathsBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel report-panel" id="reports">
+          <div class="section-title compact">
+            <span>Analysis Report</span>
+            <button class="mini-button" id="copyReport">Copy Summary</button>
+          </div>
+          <textarea id="reportText" spellcheck="false"></textarea>
+        </section>
+      </main>
+    </div>
+
+    <div class="settings-overlay" id="settingsOverlay" hidden>
+      <section class="settings-dialog" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+        <div class="settings-header">
+          <div><span>Interface Preferences</span><h2 id="settingsTitle">Settings</h2></div>
+          <button id="closeSettings" class="icon-button" type="button" aria-label="Close settings">×</button>
+        </div>
+        <div class="settings-body">
+          <label>Interface language
+            <select id="languageSetting">
+              <option value="en">English</option>
+              <option value="zh">中文</option>
+            </select>
+          </label>
+          <label>Report language
+            <select id="reportLanguageSetting">
+              <option value="en">English report</option>
+              <option value="zh">中文报告</option>
+            </select>
+          </label>
+          <label>Interface font
+            <select id="fontFamilySetting">
+              <option value="system">Segoe UI / Aptos</option>
+              <option value="arial">Arial</option>
+              <option value="times">Times New Roman</option>
+              <option value="georgia">Georgia</option>
+            </select>
+          </label>
+          <label>Text size
+            <select id="fontSizeSetting">
+              <option value="0.92">Small</option>
+              <option value="1">Standard</option>
+              <option value="1.08">Large</option>
+            </select>
+          </label>
+          <label>Display density
+            <select id="densitySetting">
+              <option value="comfortable">Comfortable</option>
+              <option value="compact">Compact</option>
+            </select>
+          </label>
+          <label>Accent colour
+            <select id="accentSetting">
+              <option value="blue">Engineering Blue</option>
+              <option value="teal">Ocean Teal</option>
+              <option value="navy">Deep Navy</option>
+            </select>
+          </label>
+        </div>
+        <div class="settings-preview"><span>Preview</span><strong>Coupled Multi-Risk Assessment</strong><small>Risk interaction, effective paths and coupled result</small></div>
+        <div class="settings-actions">
+          <button class="ghost-button" id="resetSettings" type="button">Restore Defaults</button>
+          <button class="primary-button" id="saveSettings" type="button">Save Settings</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
